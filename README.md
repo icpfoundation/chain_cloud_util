@@ -1,4 +1,5 @@
 # chain_cloud_util
+  chain_ cloud_util stores records that other canisters want to store, similar to Ethereum event, but chain_ cloud_util stores data in event cansiter
 ## example
     use ic_cdk_macros::*;
     use context::event::EventTrait;
@@ -12,6 +13,13 @@
         method_name:String,
         memo:String,
     }
+
+    #[derive(Event)]
+    struct TransferEvent{
+        method_name:String,
+        memo:String,
+    }
+    
     #[update]
     async fn mint() ->() {
         ic_cdk::print("mint");
@@ -25,7 +33,7 @@
     #[update]
     async fn transfer() ->() {
         ic_cdk::print("transfer"); 
-        let transfer_event = MintEvent{
+        let transfer_event = TransferEvent{
             method_name:"transfer".to_string(),
             memo:"transfer token".to_string(),
         };
