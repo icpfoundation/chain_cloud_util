@@ -1,5 +1,5 @@
 # chain_cloud_util
-  chain_ cloud_util stores records that other canisters want to store, similar to Ethereum event, but chain_ cloud_util stores data in event cansiter
+  chain_cloud_util stores records that other canisters want to store, similar to Ethereum event, but chain_cloud_util stores data in event canister
 
 ## How to use
 ### example
