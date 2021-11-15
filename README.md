@@ -43,3 +43,7 @@
         };
         emit(transfer_event).await;
     }
+
+## Parameter meaning
+    method_name: The function name of the currently executing function
+    memo: The length of some information you think important is limited
