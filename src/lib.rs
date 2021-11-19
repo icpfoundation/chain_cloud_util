@@ -13,10 +13,12 @@ use metadata::Metadata;
 pub extern crate event;
 pub extern crate event_macro;
 
+/// Listen to events, transfer reasonable data to event canisters and store them
 pub async fn emit(event: impl EventTrait) -> CallResult<()> {
     if event.method_name() == "" {
         return Err((RejectionCode::Unknown, "method_name is empty".to_string()));
     }
+    // Note that the remarks should not be too long, which will bring a great burden to the event canisters during message delivery
     if event.memo().len() > 30 {
         return Err((RejectionCode::Unknown, "memo too long".to_string()));
     }
@@ -38,7 +40,7 @@ pub async fn emit(event: impl EventTrait) -> CallResult<()> {
     );
     match Principal::from_text(EVENTCANISTER) {
         Ok(event_canister_id) => {
-            ic_cdk::api::call::call(event_canister_id, CREATETRANSACTION, (&new_metadata,)).await
+            api::call::call(event_canister_id, CREATETRANSACTION, (&new_metadata,)).await
         }
         Err(err) => Err((RejectionCode::Unknown, err.to_string())),
     }
@@ -49,19 +51,19 @@ mod event_macro_test {
     use super::*;
 
     #[derive(Event)]
-    struct EventTest {
+    struct MintEventTest {
         pub method_name: String,
         pub memo: String,
     }
     #[test]
     fn event_trait_test() {
-        let et = EventTest {
+        let mint_event = MintEventTest {
             method_name: "mint".to_string(),
             memo: "memo".to_string(),
         };
-        let method_name = et.method_name();
+        let method_name = mint_event.method_name();
         println!("method_name {}", method_name);
-        let memo = et.memo();
+        let memo = mint_event.memo();
         println!("memo {}", memo);
     }
 }

@@ -1,5 +1,4 @@
 extern crate proc_macro;
-
 use crate::proc_macro::TokenStream;
 use event::EventTrait;
 use ic_cdk::api;
