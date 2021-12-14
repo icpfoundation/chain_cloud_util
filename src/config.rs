@@ -1,3 +1,3 @@
 
-pub static EVENTCANISTER:&str  = "rrkah-fqaaa-aaaaa-aaaaq-cai";
+pub static EVENTCANISTER:&str  = "bedhi-xqaaa-aaaaj-aadja-cai";
 pub static CREATETRANSACTION:&str = "createEvent";
