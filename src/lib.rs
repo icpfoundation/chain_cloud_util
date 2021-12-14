@@ -19,7 +19,7 @@ pub async fn emit(event: impl EventTrait) -> CallResult<()> {
         return Err((RejectionCode::Unknown, "method_name is empty".to_string()));
     }
     // Note that the remarks should not be too long, which will bring a great burden to the event canisters during message delivery
-    if event.memo().len() > 30 {
+    if event.memo().len() > 150 {
         return Err((RejectionCode::Unknown, "memo too long".to_string()));
     }
     let canister_id = event.canister_id();
