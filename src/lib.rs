@@ -19,6 +19,7 @@ pub async fn emit(event: impl EventTrait) -> CallResult<()> {
     let caller_id = event.caller_id();
     let event_time = event.event_create_time();
     let cycle = event.canister_balance();
+    let cycle_accept = event.cycle_accept();
     let stable_size = event.stable_size();
     let method_name = event.method_name();
     let memo = event.memo();
@@ -28,6 +29,7 @@ pub async fn emit(event: impl EventTrait) -> CallResult<()> {
         event_time.into(),
         stable_size.into(),
         cycle.into(),
+        cycle_accept,
         &method_name,
         &memo,
     );
@@ -52,16 +54,20 @@ mod event_macro_test {
     struct MintEventTest {
         pub method_name: String,
         pub memo: String,
+        pub cycle_accept:Nat,
     }
     #[test]
     fn event_trait_test() {
         let mint_event = MintEventTest {
             method_name: "mint".to_string(),
             memo: "memo".to_string(),
+            cycle_accept:10.into()
         };
         let method_name = mint_event.method_name();
         println!("method_name {}", method_name);
         let memo = mint_event.memo();
         println!("memo {}", memo);
+        let cycle_accept = mint_event.cycle_accept();
+        println!("memo {}", cycle_accept);
     }
 }

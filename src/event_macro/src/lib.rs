@@ -25,6 +25,9 @@ fn impl_event_macro(ast: &syn::DeriveInput) -> TokenStream {
             fn canister_balance(&self) ->  Nat{
                 api::canister_balance().into()
             }
+            fn cycle_accept(&self) ->  Nat{
+                self.cycle_accept.clone()
+            }
            fn event_create_time(&self) -> Nat{
             api::time().into()
            }

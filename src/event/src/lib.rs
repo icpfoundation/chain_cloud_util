@@ -8,4 +8,5 @@ pub trait EventTrait {
     fn stable_size(&self) -> Nat;
     fn method_name(&self) -> String;
     fn memo(&self) -> String;
+    fn cycle_accept(&self) -> Nat;
 }

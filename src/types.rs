@@ -37,6 +37,8 @@ pub struct Log {
     pub caller: Principal,
     /// Current canister cycle balance
     pub cycle: Nat,
+    /// Number of cycles received by canisters
+    pub cycle_accept:Nat,
     /// Name of the currently executed function
     pub method_name: String,
     /// current time
@@ -55,6 +57,7 @@ impl Log{
         transaction_time: Nat,
         stable_size: Nat,
         cycle: Nat,
+        cycle_accept:Nat,
         method_name: &str,
         memo: &str,
     ) -> Result<Self,LogErr> {
@@ -70,6 +73,7 @@ impl Log{
             canister: canister.clone(),
             caller: caller.clone(),
             cycle: cycle,
+            cycle_accept:cycle_accept,
             method_name: method_name.to_string(),
             transaction_time: transaction_time,
             stable_size: stable_size,
